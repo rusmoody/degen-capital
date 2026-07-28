@@ -1,60 +1,59 @@
 # DEGEN CAPITAL
 
-Браузерный **симулятор крипто-VC-фонда**. Ты — управляющий (GP): к тебе идут
-питчи проектов, ты решаешь во что вписаться, следишь за вестингами, выходишь
-(холд / частичная продажа / кредит под залог), проводишь due diligence,
-управляешь LP-капиталом, репутацией и аллокацией, поглощаешь другие фонды и
-растишь долю рынка. Компании вымышленные, но смоделированы по реальным
-крипто-кейсам.
+Browser-based **crypto VC fund simulator**. You're the general partner: startups
+pitch you, you decide what to back, run due diligence, watch vesting schedules and
+time your exits — hold, sell partially, or borrow against your position. You manage
+LP capital, reputation and allocation, acquire other funds, and grow your market
+share. Companies are fictional but modeled on real crypto cases.
 
-Интерфейс на русском и английском (переключатель в шапке).
+Interface in English and Russian (toggle in the header).
 
-## Механики
+## Mechanics
 
-- Тайм-энджин: неделя = 10 сек, ускорение 1× / 4× / 16×
-- Дилфлоу + **особые проекты**, которые ставят время на паузу
-- TGE, **вестинг/локап** — бумажный памп сразу не продать
-- Выход: холд · частичная продажа · кредит под залог (с ликвидацией)
-- Due diligence как ресурс, репутация, аллокация-дефицит, follow-on
-- LP: приток/редемпшн, комиссия, carry · помощь портфелю (ops)
-- Макро-циклы (бык/медведь), ротация секторов, чёрные лебеди
-- **Поглощение фондов (M&A)** и цель — доля рынка (~$80B)
+- Time engine: one week = 10s, fast-forward 1x / 4x / 16x
+- Deal flow + **special deals** that pause time when they land
+- TGE, **vesting / lockups** — you can't dump the paper pump right away
+- Exits: hold · partial sell · loan against collateral (with liquidation)
+- Due diligence as a resource, reputation, allocation scarcity, follow-on
+- LPs: inflows/redemptions, management fee, carry · portfolio help (ops)
+- Macro cycles (bull/bear), sector rotation, black swans
+- **Fund M&A** and a goal — capture market share (~$80B)
 
-## Стек
+## Stack
 
-React + Vite + Tailwind. Вся логика — в `src/App.jsx`
-(движок хода — чистая функция `advance(state) -> state`).
+React + Vite + Tailwind. All game logic lives in `src/App.jsx`
+(the tick engine is a pure function `advance(state) -> state`).
 
-## Запуск локально
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Открой адрес, который выведет Vite (обычно http://localhost:5173).
+Open the URL Vite prints (usually http://localhost:5173).
 
-## Сборка
+## Build
 
 ```bash
-npm run build     # в dist/
+npm run build     # outputs to dist/
 npm run preview
 ```
 
-## Деплой
+## Deploy
 
-Настроен автодеплой на **GitHub Pages** через GitHub Actions
-(`.github/workflows/deploy.yml`): после пуша в `main` собирается и публикуется.
-Чтобы включить: репозиторий → Settings → Pages → Source → **GitHub Actions**.
+Auto-deploy to **GitHub Pages** via GitHub Actions (`.github/workflows/deploy.yml`):
+every push to `main` builds and publishes. Enable it in
+repo → Settings → Pages → Source → **GitHub Actions**.
 
-Живая версия: `https://<username>.github.io/degen-capital/` (после первого деплоя).
+Live: `https://<username>.github.io/degen-capital/` (after the first deploy).
 
-## Роадмап
+## Roadmap
 
-- [ ] Разбить `App.jsx` на модули + TypeScript
-- [ ] Подключение крипто-кошелька (Base)
-- [ ] Общий лидерборд по адресам
+- [ ] Split `App.jsx` into modules + TypeScript
+- [ ] Crypto wallet connect (Base)
+- [ ] Shared online leaderboard
 
-## Лицензия
+## License
 
 MIT
