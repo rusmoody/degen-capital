@@ -6,7 +6,7 @@ import { injected, coinbaseWallet, walletConnect } from "wagmi/connectors";
 // Это НЕ секрет — можно коммитить в публичный репо.
 // Пока пусто — работают MetaMask и Coinbase Wallet; как впишешь ID,
 // добавятся мобильные кошельки через WalletConnect.
-export const WALLETCONNECT_PROJECT_ID = "";
+export const WALLETCONNECT_PROJECT_ID = "9aa6129a8c76d345d2c5bd32d2541c58";
 
 const connectors = [
   injected(),
