@@ -6,8 +6,10 @@ import ProfileBadge from "./ProfileBadge";
 import ProfileGate from "./ProfileGate";
 import InfoModal from "./InfoModal";
 import { useProfile } from "../web3/useProfile";
+import { useLang } from "../lang";
 
-export default function Web3Bar({ lang = "ru" }) {
+export default function Web3Bar() {
+  const lang = useLang();
   const { isConnected, chainId } = useAccount();
   const { hasProfile, profile, refetch } = useProfile();
   const [gate, setGate] = useState(false);
@@ -18,7 +20,7 @@ export default function Web3Bar({ lang = "ru" }) {
     <div className="fixed top-3 right-3 z-20 flex items-center gap-2">
       <button
         onClick={() => setInfo(true)}
-        title="Что это"
+        title={lang === "ru" ? "Что это" : "What is this"}
         className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-800/80 text-slate-300 text-sm font-serif italic hover:bg-slate-700"
       >
         i

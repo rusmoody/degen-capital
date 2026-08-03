@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, createContext, useRef } from "react";
+import { useLang, toggleLang } from "./lang";
 import {
   Play, Pause, Inbox, Wallet, TrendingDown, TrendingUp, X, Landmark, Clock,
   AlertTriangle, Search, Sparkles, Globe, Users, Activity, Building2, Target,
@@ -507,7 +508,7 @@ export default function App() {
   const [sellId, setSellId] = useState(null);
   const [amt, setAmt] = useState(0);
   const [sellAmt, setSellAmt] = useState(0);
-  const [lang, setLang] = useState("ru");
+  const lang = useLang();
   const [sortKey, setSortKey] = useState("pnl");
   const [filterKey, setFilterKey] = useState("all");
   const [compact, setCompact] = useState(false);
@@ -586,7 +587,7 @@ export default function App() {
               </div>
               <div className="flex flex-col items-end gap-2">
                 <div className="flex items-center gap-2">
-                  <button onClick={() => setLang((x) => (x === "ru" ? "en" : "ru"))} className="flex items-center gap-1 rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-xs font-mono hover:bg-slate-700"><Globe size={12} /> {lang === "ru" ? "RU" : "EN"}</button>
+                  <button onClick={toggleLang} className="flex items-center gap-1 rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-xs font-mono hover:bg-slate-700"><Globe size={12} /> {lang === "ru" ? "RU" : "EN"}</button>
                   <div className="flex items-center gap-1.5 text-slate-300 text-sm font-mono"><Clock size={14} className="text-amber-300" /> {t("week")} {wkn} · {year}</div>
                   <button onClick={() => setRunning((r) => !r)} disabled={g.over} className="rounded-md border border-slate-700 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 p-1.5">{running ? <Pause size={16} /> : <Play size={16} />}</button>
                   {[1, 4].map((s) => (<button key={s} onClick={() => setSpeed(s)} className={`rounded-md border px-2 py-1 text-xs font-mono ${speed === s ? "border-amber-500/50 bg-amber-500/15 text-amber-300" : "border-slate-700 bg-slate-800 text-slate-400 hover:bg-slate-700"}`}>{s}×</button>))}
