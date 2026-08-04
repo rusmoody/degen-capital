@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, createContext, useRef } from "react";
 import { useLang, toggleLang } from "./lang";
+import { setGameStats } from "./gameStats";
 import {
   Play, Pause, Inbox, Wallet, TrendingDown, TrendingUp, X, Landmark, Clock,
   AlertTriangle, Search, Sparkles, Globe, Users, Activity, Building2, Target,
@@ -562,6 +563,8 @@ export default function App() {
 
   const copySeed = () => { try { navigator.clipboard.writeText(String(g.seed)); setCopied(true); setTimeout(() => setCopied(false), 1200); } catch (e) {} };
   const startSeed = () => { const n = parseInt(seedInput, 10); if (!isNaN(n)) { setGame(initGame(n)); setRunning(false); setSeedInput(""); } };
+
+  useEffect(() => { setGameStats({ aum: Math.round(aum), weeks: g.week, seed: g.seed, over: g.over }); }, [aum, g.week, g.seed, g.over]);
 
   const evText = g.event ? eventText(g.event.code, lang) : "";
 

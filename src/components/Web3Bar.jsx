@@ -5,6 +5,7 @@ import ConnectButton from "./ConnectButton";
 import ProfileBadge from "./ProfileBadge";
 import ProfileGate from "./ProfileGate";
 import InfoModal from "./InfoModal";
+import Leaderboard from "./Leaderboard";
 import { useProfile } from "../web3/useProfile";
 import { useLang } from "../lang";
 
@@ -14,6 +15,7 @@ export default function Web3Bar() {
   const { hasProfile, profile, refetch } = useProfile();
   const [gate, setGate] = useState(false);
   const [info, setInfo] = useState(false);
+  const [board, setBoard] = useState(false);
   const onBase = chainId === base.id;
 
   return (
@@ -24,6 +26,13 @@ export default function Web3Bar() {
         className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-800/80 text-slate-300 text-sm font-serif italic hover:bg-slate-700"
       >
         i
+      </button>
+      <button
+        onClick={() => setBoard(true)}
+        title={lang === "ru" ? "Рейтинг" : "Leaderboard"}
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-700 bg-slate-800/80 hover:bg-slate-700"
+      >
+        🏆
       </button>
       {isConnected && onBase && hasProfile && <ProfileBadge profile={profile} />}
       {isConnected && onBase && !hasProfile && (
@@ -37,6 +46,7 @@ export default function Web3Bar() {
       <ConnectButton />
 
       {info && <InfoModal lang={lang} onClose={() => setInfo(false)} />}
+      {board && <Leaderboard onClose={() => setBoard(false)} />}
       {gate && (
         <ProfileGate onClose={() => setGate(false)} onDone={() => { setGate(false); refetch(); }} />
       )}
